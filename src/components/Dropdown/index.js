@@ -1,6 +1,32 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 export default class Dropdown extends Component {
+
+  state = {
+    groups: []
+  }
+
+  componentDidMount = () => {
+    this.getGroups();
+  }
+
+  getGroups = () => {
+    axios.get("https://yoda-baby-backend.herokuapp.com/groups")
+      .then((response) => {
+        const data = response.data;
+        this.setState({groups:data});
+      })
+  }
+
+  displayGroups = (groups) => {
+    if(!groups.length) return null;
+    return groups.map((group,index) => (
+      <li key={index}>
+        <a class="dropdown-item" href="#">{group.name}</a>
+      </li>
+    ))
+  }
 
   render() {
     return (
@@ -9,9 +35,7 @@ export default class Dropdown extends Component {
           May the <s>force</s> <b>community</b> be with you
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="https://yoda.baby">Backend</a></li>
-          <li><a class="dropdown-item" href="https://yoda.baby">Frontend</a></li>
-          <li><a class="dropdown-item" href="https://yoda.baby">Linux</a></li>
+          {this.displayGroups(this.state.groups)}
         </ul>
       </div>
     );

@@ -6,10 +6,9 @@ import { BoxContent, Content } from "./styles";
 import Dropdown from "./components/Dropdown";
 import Profile from "./components/Profile";
 import PanelActivity from "./components/PanelActivity";
-//import Upload from "./components/Upload";
-//import FileList from "./components/FileList";
 
 class App extends Component {
+
   render() {
     return (
       <BoxContent>
@@ -39,10 +38,3 @@ class App extends Component {
 }
 
 export default App;
-
-/*
-<Upload onUpload={this.handleUpload} />
-            {!!uploadedFiles.length && (
-              <FileList files={uploadedFiles} onDelete={this.handleDelete} />
-            )}
-*/
